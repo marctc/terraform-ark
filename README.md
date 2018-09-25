@@ -14,7 +14,7 @@ provider "google" {
 }
 
 module "ark_gcp" {
-  source = "git::https://github.com/marctc/terraform-ark/gcp"
+  source = "git::https://github.com/marctc/terraform-ark.git//gcp"
   
   project      = "my-project"
   bucket_name  = "ark-backup-bucket"
