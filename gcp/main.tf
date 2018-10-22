@@ -7,7 +7,7 @@ resource "google_service_account" "heptio_ark_service_account" {
 resource "google_project_iam_custom_role" "heptio_ark_role" {
   role_id     = "heptio_ark.server"
   title       = "Heptio Ark Server"
-  permissions = ["compute.disks.get", "compute.disks.create", "compute.disks.createSnapshot", "compute.snapshots.get", 
+  permissions = ["compute.disks.get", "compute.disks.create", "compute.disks.createSnapshot", "compute.snapshots.get",
                 "compute.snapshots.create", "compute.snapshots.useReadOnly", "compute.snapshots.delete", "compute.projects.get"]
 }
 
@@ -24,12 +24,11 @@ resource "google_storage_bucket_iam_member" "member" {
 }
 
 # Create service account key file
-
 resource "google_service_account_key" "heptio_ark_service_account_key" {
   service_account_id = "${google_service_account.heptio_ark_service_account.name}"
 }
 
 resource "local_file" "heptio_ark_service_account_key_json_file" {
-    content     = "${base64decode(google_service_account_key.heptio_ark_service_account_key.private_key)}"
+    content  = "${base64decode(google_service_account_key.heptio_ark_service_account_key.private_key)}"
     filename = "credentials-ark"
 }

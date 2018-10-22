@@ -2,7 +2,20 @@
 
 Terraform module for Ark for GCP.
 
+
 ## Usage
+
+### Enable Google Cloud APIs
+
+You need to enable the following Google Cloud APIs of your GCP project to run this Terraform module.
+
+* [IAM API](https://console.developers.google.com/apis/api/iam.googleapis.com/overview)
+* [Cloud Resource Management](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview)
+
+
+### Terraform module
+
+Create `main.tf` file with this content.
 
 ```terraform
 
@@ -14,7 +27,7 @@ provider "google" {
 
 module "ark_gcp" {
   source = "git::https://github.com/marctc/terraform-ark.git//gcp"
-  
+
   project      = "my-project"
   bucket_name  = "ark-backup-bucket"
 }
